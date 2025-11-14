@@ -1,0 +1,20 @@
+services:
+  pdf-converter:
+    # Build the image from the Dockerfile in the current directory
+    build: .
+    
+    # Set a friendly container name
+    container_name: pdf2image
+    
+    # Map port 8501 on your server to port 8501 in the container
+    ports:
+      - "8501:8501"
+      
+    # Mount the local app.py into the container
+    # This is great for development! You can edit app.py
+    # and Streamlit will update without rebuilding the image.
+    volumes:
+      - ./app.py:/app/app.py
+      
+    # Automatically restart the service if it crashes
+    restart: unless-stopped
